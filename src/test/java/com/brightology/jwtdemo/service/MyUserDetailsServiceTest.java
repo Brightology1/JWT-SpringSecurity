@@ -28,5 +28,17 @@ class MyUserDetailsServiceTest {
         assertEquals("Bman", actualLoadUserByUsernameResult.getUsername());
         assertEquals("SirB", actualLoadUserByUsernameResult.getPassword());
     }
+
+    @Test
+    void testLoadUserByUsername2() throws UsernameNotFoundException {
+        UserDetails actualLoadUserByUsernameResult = this.myUserDetailsService.loadUserByUsername("janedoe");
+        assertTrue(actualLoadUserByUsernameResult.getAuthorities().isEmpty());
+        assertTrue(actualLoadUserByUsernameResult.isEnabled());
+        assertTrue(actualLoadUserByUsernameResult.isCredentialsNonExpired());
+        assertTrue(actualLoadUserByUsernameResult.isAccountNonLocked());
+        assertTrue(actualLoadUserByUsernameResult.isAccountNonExpired());
+        assertEquals("Bman", actualLoadUserByUsernameResult.getUsername());
+        assertEquals("SirB", actualLoadUserByUsernameResult.getPassword());
+    }
 }
 
